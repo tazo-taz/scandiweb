@@ -35,8 +35,6 @@ class Item extends Component {
     const inCart = cart.find((a) => a.id === item.id);
     const attributes = getDefaultAttributes(item);
 
-    console.log(item.inStock);
-
     return (
       <MainItem>
         <Link to={'/product/' + item.id}>

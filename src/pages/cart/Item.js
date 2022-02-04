@@ -25,7 +25,6 @@ class Item extends Component {
     };
   }
   render() {
-    console.log(this.props);
     const { a, currency } = this.props;
     const { currImage } = this.state;
 
@@ -40,7 +39,6 @@ class Item extends Component {
           {a.allAttributes?.map((b, c) => (
             <Flex key={c} gap={2}>
               {b.items.map((d, e) => {
-                console.log(b, d);
                 const props = { key: e };
                 const selected = a.attributes[b.id] === d.id;
                 if (b.type === 'swatch') {
