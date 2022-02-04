@@ -1,0 +1,11 @@
+.NavLink {
+    color: black;
+    text-decoration: none;
+    text-transform: capitalize;
+    margin: 10px 5px;
+    cursor: pointer;
+}
+.activeNavLink {
+    color: var(--green);
+    font-weight: bold;
+}
