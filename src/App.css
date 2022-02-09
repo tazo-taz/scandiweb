@@ -44,3 +44,7 @@ color: black;
     opacity: 1;
   }
 }
+.navLink.active > div {
+  color: var(--green);
+  border-bottom: 1px solid;
+}

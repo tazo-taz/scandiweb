@@ -34,8 +34,8 @@ import {
   NavUlSC,
   VerticalCenter
 } from './styledComponents';
-import { getCurrencies } from '../../GraphQL/Queries';
-import { Link } from 'react-router-dom';
+import { getCategories, getCurrencies } from '../../GraphQL/Queries';
+import { Link, NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import {
   DELETE_ITEM_IN_CART,
@@ -49,7 +49,8 @@ class Navbar extends Component {
     this.state = {
       openCart: false,
       openCurrency: false,
-      currencies: []
+      currencies: [],
+      categories: []
     };
   }
 
@@ -60,6 +61,15 @@ class Navbar extends Component {
         currencies
       });
       this.props.setCurrency(currencies[0].label);
+    });
+
+    getCategories().then((result) => {
+      const { categories } = result.data;
+      if (categories.length) {
+        this.setState({
+          categories
+        });
+      }
     });
   }
 
@@ -81,12 +91,18 @@ class Navbar extends Component {
 
     return (
       <MainDiv>
-        <Flex className="myContainer relative">
+        <Flex className="myContainer" position="relative">
           <Flex1>
             <NavUlSC>
-              <NavLiSC active={true}>Woman</NavLiSC>
-              <NavLiSC>Man</NavLiSC>
-              <NavLiSC>Kids</NavLiSC>
+              {this.state.categories.map(({ name }, b) => (
+                <NavLink
+                  key={b}
+                  to={name === 'all' ? '' : '/category/' + name}
+                  className="navLink"
+                >
+                  <NavLiSC iSC>{name}</NavLiSC>
+                </NavLink>
+              ))}
             </NavUlSC>
           </Flex1>
           <Flex1>
@@ -183,7 +199,7 @@ class Navbar extends Component {
                       (b) => b.currency.label === currency
                     );
 
-                    const priceFixed = (price.amount * a.amount).toFixed(2);
+                    const priceFixed = price.amount.toFixed(2);
                     return (
                       <MiniCartItemsGridSC key={a.myId}>
                         <Column gap={3} justifyContent={'space-between'}>

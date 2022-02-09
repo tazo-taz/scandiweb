@@ -25,6 +25,7 @@ export const CartItemIcon = styled.img`
   right: ${(p) => p.right};
   transform: translateY(-50%) scale(0.7);
   cursor: pointer;
+  z-index: 1;
 `;
 
 CartItemIcon.defaultProps = {

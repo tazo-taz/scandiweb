@@ -75,6 +75,7 @@ export const AddIcon = styled.div`
 `;
 
 export const InCart = styled.div`
+  opacity: 0;
   position: absolute;
   height: 37px;
   width: 37px;

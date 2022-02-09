@@ -8,7 +8,6 @@ import {
 } from '../../reducer/variables';
 import { getDefaultAttributes } from '../../services/item';
 import {
-  AddIcon,
   InCart,
   InCartImg,
   ItemImg,
@@ -29,10 +28,9 @@ class Item extends Component {
   }
   render() {
     const { item } = this.state;
-    const { currency, cart } = this.props.general;
+    const { currency } = this.props.general;
 
     const price = item.prices.find((a) => a.currency.label === currency);
-    const inCart = cart.find((a) => a.id === item.id);
     const attributes = getDefaultAttributes(item);
 
     return (
@@ -52,7 +50,7 @@ class Item extends Component {
           </ItemParent>
         </Link>
         {item.inStock && (
-          <AddIcon
+          <InCart
             className="addIcon"
             onClick={() => {
               const currCartItem = this.props.general.cart.find(
@@ -89,11 +87,6 @@ class Item extends Component {
                 });
             }}
           >
-            <img alt="" src="/assets/images/icons/add.png" />
-          </AddIcon>
-        )}
-        {inCart && (
-          <InCart>
             <InCartImg
               alt="In cart"
               title="In cart"

@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Flex, MainDivContainer } from '../../defComponents/styledComponents';
+import { MainDivContainer } from '../../defComponents/styledComponents';
 import { getCategories, getCategoryItems } from '../../GraphQL/Queries';
 import { CategoryNameSC, ItemsParent } from './styledComponents';
-import styles from './style.module.css';
 import Item from '../../components/items';
+import { useParams } from 'react-router-dom';
 
 class Main extends Component {
   constructor(props) {
@@ -28,13 +28,16 @@ class Main extends Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
+    const url = window.location.pathname;
+    const currCategory = url.includes('category') ? url.split('/')[2] : 'all';
     const oldCurrCategory = prevState.currCategory;
-    const newCurrCategory = this.state.currCategory;
-    if (oldCurrCategory !== newCurrCategory) {
-      getCategoryItems(newCurrCategory).then((result) => {
+
+    if (currCategory !== oldCurrCategory) {
+      getCategoryItems(currCategory).then((result) => {
         const products = result.data.category.products;
         this.setState({
-          products
+          products,
+          currCategory: currCategory
         });
       });
     }
@@ -43,26 +46,6 @@ class Main extends Component {
   render() {
     return (
       <MainDivContainer>
-        <h3>Please select a category</h3>
-        <Flex gap={2}>
-          {this.state.categories.map(({ name }, b) => (
-            <p
-              className={
-                this.state.currCategory === name
-                  ? styles.activeNavLink + ' ' + styles.NavLink
-                  : styles.NavLink
-              }
-              key={b}
-              onClick={() => {
-                this.setState({
-                  currCategory: name
-                });
-              }}
-            >
-              {name}
-            </p>
-          ))}
-        </Flex>
         <br />
         <CategoryNameSC>{this.state.currCategory}</CategoryNameSC>
         <ItemsParent>
@@ -75,4 +58,8 @@ class Main extends Component {
   }
 }
 
-export default Main;
+function withParams(Component) {
+  return (props) => <Component {...props} params={useParams()} />;
+}
+
+export default withParams(Main);

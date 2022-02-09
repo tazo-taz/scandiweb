@@ -182,7 +182,7 @@ export const CurrenciesDivSC = styled.div`
   top: 82%;
   right: 0;
   padding: 15px;
-  box-shadow: 0 0 2px #00000017;
+  box-shadow: 0 4px 2px #00000014;
   border-radius: 2px;
   z-index: 3;
   background: white;
@@ -196,8 +196,12 @@ export const CurrenciesDivSC = styled.div`
 `;
 
 export const CurrencyP = styled.div`
-  color: ${(p) => (p.active ? 'var(--green)' : 'black')};
+  color: ${(p) => (p.active ? 'var(--green)!important' : '#6e6e6e')};
   cursor: pointer;
+
+  &:hover {
+    color: black;
+  }
 `;
 
 export const CartItemsParentSC = styled.div`
