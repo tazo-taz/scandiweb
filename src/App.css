@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Comforter&family=Roboto&display=swap');
+@import url("./fonts.css");
 
 :root {
   --green: #5ECE7B;
@@ -9,7 +9,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Roboto';
+  font-family: 'Raleway';
 }
 a {
   text-decoration: none;

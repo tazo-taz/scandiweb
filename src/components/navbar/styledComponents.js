@@ -22,6 +22,8 @@ export const NavLiSC = styled.div`
   text-transform: uppercase;
   color: ${(p) => (p.active ? 'var(--green)' : 'black')};
   border-bottom: ${(p) => (p.active ? '1px solid' : 'none')};
+  font-family: 'Raleway';
+  font-weight: 400;
 `;
 
 export const Logo = styled.img`
@@ -37,6 +39,7 @@ export const VerticalCenter = styled.div`
 
 export const CurrentcySC = styled.p`
   font-size: 18px;
+  font-weight: 500;
 `;
 
 export const ExpandSC = styled.img`
@@ -97,7 +100,7 @@ MiniCartBG.defaultProps = {
 };
 
 export const MiniCartItemsLengthSC = styled.p`
-  font-size: 14px;
+  font-weight: 500;
 `;
 
 export const MiniCartItemsGridSC = styled.div`
@@ -107,9 +110,21 @@ export const MiniCartItemsGridSC = styled.div`
 `;
 
 export const MiniCartItemsSpecHeaderSC = styled.p`
-  font-size: 20px;
   color: #1c1c1c;
-  font-weight: 200;
+  font-weight: 300;
+`;
+
+export const MiniCartItemsSpecPriceSC = styled.p`
+  font-weight: 500;
+`;
+
+export const Roboto500 = styled.p`
+  font-weight: 500;
+  font-family: 'Roboto';
+`;
+
+export const Weight700SC = styled.p`
+  font-weight: 700;
 `;
 
 export const MiniCartItemsSpecSizesSC = styled.div`
@@ -126,6 +141,7 @@ export const MiniCartItemsSpecSizesSC = styled.div`
   cursor: pointer;
   transition: 0.3s;
   font-weight: ${(p) => (p.weight ? 'bold' : 'inherit')};
+  font-size: 14px;
 
   ${(p) => p.selected && `background: black; color: white;`}
   ${(p) =>
@@ -196,11 +212,12 @@ export const CurrenciesDivSC = styled.div`
 `;
 
 export const CurrencyP = styled.div`
-  color: ${(p) => (p.active ? 'var(--green)!important' : '#6e6e6e')};
+  color: ${(p) => (p.active ? 'var(--green)!important' : '#1D1F22')};
   cursor: pointer;
+  font-weight: 500;
 
   &:hover {
-    color: black;
+    font-weight: 600;
   }
 `;
 

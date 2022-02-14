@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BigSpecSizeSC } from '../../components/navbar/styledComponents';
 import {
+  BigBtn2,
   Btn2,
   Column,
   Flex,
@@ -8,7 +9,15 @@ import {
 } from '../../defComponents/styledComponents';
 import { getItem } from '../../GraphQL/Queries';
 import { getDefaultAttributes } from '../../services/item';
-import { GalleryImg, MainDiv, MainImg } from './styledComponents';
+import {
+  AttrNameSC,
+  DescriptionSC,
+  GalleryImg,
+  MainDiv,
+  MainImg,
+  PriceSC,
+  ProductNameSC
+} from './styledComponents';
 import { connect } from 'react-redux';
 import {
   SET_ITEM_IN_CART,
@@ -47,6 +56,9 @@ class Product extends Component {
     if (loading) return <MainDivContainer>loading</MainDivContainer>;
     if (!loading && !product)
       return <MainDivContainer>Product doesn't exist</MainDivContainer>;
+    const price = product.prices.find(
+      (a) => a.currency.label === this.props.general.currency
+    );
     return (
       <MainDivContainer>
         <MainDiv>
@@ -61,10 +73,10 @@ class Product extends Component {
           </Column>
           <MainImg src={chosenImage} />
           <Column gap={6}>
-            <h1>{product.name}</h1>
+            <ProductNameSC>{product.name}</ProductNameSC>
             {product.attributes?.map((a, b) => (
               <Column gap={1} key={b}>
-                <h4>{a.name.toUpperCase()}:</h4>
+                <AttrNameSC>{a.name.toUpperCase()}:</AttrNameSC>
                 <Flex gap={2}>
                   {a.items?.map((c, d) => {
                     const props = { key: d };
@@ -96,10 +108,13 @@ class Product extends Component {
               </Column>
             ))}
             <Column gap={1}>
-              <h4>PRICE:</h4>
-              <h4>$40.00</h4>
+              <AttrNameSC mb={4}>PRICE:</AttrNameSC>
+              <PriceSC>
+                {price.currency.symbol}
+                {price.amount}
+              </PriceSC>
             </Column>
-            <Btn2
+            <BigBtn2
               onClick={() => {
                 const currCartItem = this.props.general.cart.find(
                   (a) =>
@@ -138,8 +153,8 @@ class Product extends Component {
               disabled={!product.inStock}
             >
               ADD TO CART
-            </Btn2>
-            <div>{toHtml(product.description)}</div>
+            </BigBtn2>
+            <DescriptionSC>{toHtml(product.description)}</DescriptionSC>
           </Column>
         </MainDiv>
       </MainDivContainer>

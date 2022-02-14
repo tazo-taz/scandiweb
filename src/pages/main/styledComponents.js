@@ -13,6 +13,6 @@ export const ItemsParent = styled.div`
 
 export const CategoryNameSC = styled.h1`
   font-size: 42px;
-  font-weight: lighter;
+  font-weight: 400;
   text-transform: capitalize;
 `;

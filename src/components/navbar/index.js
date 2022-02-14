@@ -28,11 +28,14 @@ import {
   MiniCartItemsLengthSC,
   MiniCartItemsSpecHeaderSC,
   MiniCartItemsSpecImgSC,
+  MiniCartItemsSpecPriceSC,
   MiniCartItemsSpecSizesSC,
   MiniCartSC,
   NavLiSC,
   NavUlSC,
-  VerticalCenter
+  Roboto500,
+  VerticalCenter,
+  Weight700SC
 } from './styledComponents';
 import { getCategories, getCurrencies } from '../../GraphQL/Queries';
 import { Link, NavLink } from 'react-router-dom';
@@ -207,7 +210,9 @@ class Navbar extends Component {
                             <MiniCartItemsSpecHeaderSC>
                               {a.name}
                             </MiniCartItemsSpecHeaderSC>
-                            <h5>{price.currency.symbol + priceFixed}</h5>
+                            <MiniCartItemsSpecPriceSC>
+                              {price.currency.symbol + priceFixed}
+                            </MiniCartItemsSpecPriceSC>
                           </Column>
                           {a.allAttributes.map((c, d) => (
                             <Flex gap={1} key={d}>
@@ -243,7 +248,9 @@ class Navbar extends Component {
                           >
                             +
                           </MiniCartItemsSpecSizesSC>
-                          <p>{a.amount}</p>
+                          <MiniCartItemsSpecPriceSC>
+                            {a.amount}
+                          </MiniCartItemsSpecPriceSC>
                           <MiniCartItemsSpecSizesSC
                             onClick={() => {
                               if (a.amount === 1)
@@ -271,8 +278,8 @@ class Navbar extends Component {
                 </CartItemsParentSC>
                 <h4>
                   <Flex justifyContent="space-between">
-                    <span>Total</span>
-                    <span>{currCurrency?.symbol + sum}</span>
+                    <Roboto500>Total</Roboto500>
+                    <Weight700SC>{currCurrency?.symbol + sum}</Weight700SC>
                   </Flex>
                 </h4>
                 <Div2Children gap={2}>

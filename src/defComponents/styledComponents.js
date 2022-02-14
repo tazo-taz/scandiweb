@@ -60,34 +60,42 @@ Div2Children.defaultProps = {
 };
 
 export const Btn1 = styled.button`
-  background: white;
+  background: ${(p) => p.bg};
   padding: 14px;
-  font-size: 16px;
-  color: #1d1f22;
-  border-color: #1d1f22;
+  font-size: ${(p) => p.fontSize}px;
+  font-weight: 600;
+  color: ${(p) => p.color};
+  border-color: ${(p) => p.borderColor};
   cursor: pointer;
   transition: 0.3s;
 
   &:hover {
-    background: #1d1f22;
-    color: white;
+    ${(p) => p.hover}
   }
 `;
 
-export const Btn2 = styled.button`
-  background: white;
-  padding: 14px;
-  font-size: 16px;
-  background: ${(p) => (!p.disabled ? 'var(--green)' : 'gray!important')};
+Btn1.defaultProps = {
+  color: '#1d1f22',
+  bg: 'white',
+  borderColor: '#1d1f22',
+  hover: `
+  background: #1d1f22;
   color: white;
-  border: none;
-  cursor: pointer;
-  transition: 0.3s;
+  `,
+  fontSize: 14
+};
 
-  &:hover {
-    background: var(--darkgreen);
-  }
-`;
+export const Btn2 = ({ disabled = false, ...props }) => (
+  <Btn1
+    {...props}
+    color="white"
+    hover={`background: var(--darkgreen)`}
+    bg={!disabled ? 'var(--green)' : 'gray!important'}
+    borderColor="transparent"
+  />
+);
+
+export const BigBtn2 = ({ ...props }) => <Btn2 fontSize={16} {...props} />;
 
 const MainDivSC = styled.div`
   margin-top: 25px !important;

@@ -37,20 +37,22 @@ export const NotInStockSC = styled.div`
   justify-content: center;
   background: #0000000f;
   color: #878787;
-  font-size: 22px;
+  font-size: 24px;
   position: absolute;
   top: 0;
   left: 0;
+  font-weight: 400;
 `;
 
 export const ItemNameSC = styled.p`
   color: ${(p) => (p.disabled ? disabledColor : 'black')};
   font-size: 18px;
+  font-weight: 300;
 `;
 
 export const ItemPrice = styled.p`
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 500;
   color: ${(p) => (p.disabled ? disabledColor : 'black')};
 `;
 
